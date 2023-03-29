@@ -20,24 +20,6 @@ upperMaker();
 var numericChars = ["0","1","2","3","4","5","6","7","8","9"];
 var specialChars = [" ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","`","{","|","}","~"];
 
-// Lists out the four data types in the console, for reference
-console.log("===== Original Four Arrays =====")
-console.log(lowerChars);
-console.log(upperChars);
-console.log(numericChars);
-console.log(specialChars);
-
-// Shows the starting values of the variables upon page load
-
-console.log("===== BEFORE INPUT =====")
-
-console.log(length,"Characters Long");
-console.log("Uppercase Characters:", upperSelected)
-console.log("Lowercase Characters:", lowerSelected)
-console.log("Numeric Characters:", numericSelected)
-console.log("Special Characters:", specialSelected)
-
-
 // Input Collector
 // Prompts the user to enter a length between 8 and 128, and will coerce that result into a number
 // Will repeat that step until an acceptable length is entered, will also repeat if a string is entered
@@ -46,23 +28,17 @@ console.log("Special Characters:", specialSelected)
 // Will repeat if none are selected, giving a specific error message saying that you must select one
 
 function collectInputs() {
-  console.log("===== AFTER INPUT =====")
   do {
     length = Number(prompt("Please enter desired password length.\nBetween 8 and 128 characters, please."))
   } while (length>128 || length<8 || Number.isNaN(length));
-  console.log(length,"Characters Long");
   do {
     upperSelected=confirm("Uppercase Characters?\nOK for Yes, Cancel for No")
-    console.log("Uppercase Characters:", upperSelected)
     
     lowerSelected=confirm("Lowercase Characters?\nOK for Yes, Cancel for No")
-    console.log("Lowercase Characters:", lowerSelected)
     
     numericSelected=confirm("Numeric Characters?\nOK for Yes, Cancel for No")
-    console.log("Numeric Characters:", numericSelected)
     
     specialSelected=confirm("Special Characters?\nOK for Yes, Cancel for No")
-    console.log("Special Characters:", specialSelected)
     if ((upperSelected || lowerSelected || numericSelected || specialSelected) == false) {
       alert("Must select at least one character type!")
       continue;
@@ -88,8 +64,6 @@ if (numericSelected==true) {
 if (specialSelected==true) {
   charList = charList.concat(specialChars);
 }
-console.log("===== CONCAT LIST ======")
-console.log(charList)
 }
 
 // Password Constructor
@@ -109,13 +83,11 @@ function passwordConstructor() {
 // the password following the above functions, then returns it out.
 
 function generatePassword() {
-  console.log("Generate Password Button Hit!");
   result=""
   charList=[]
   collectInputs();
   arrayConstructor();
   passwordConstructor();
-  console.log("The password is",result.length,"characters long.")
   return result;
 }
 
