@@ -21,15 +21,34 @@ var numericSelected = false
 var specialSelected = false
 var length = 0
 
-console.log(length);
+console.log("===== BEFORE INPUT =====")
 
-// Length portion
+console.log(length,"Characters Long");
+console.log("Uppercase Characters:", upperSelected)
+console.log("Lowercase Characters:", lowerSelected)
+console.log("Numeric Characters:", numericSelected)
+console.log("Special Characters:", specialSelected)
 
+console.log("===== AFTER INPUT =====")
+// This do...while forces you to enter a number, and coerces it into an actual number value. Cannot cancel out, either.
 do {
-  length = prompt("Please enter desired password length.\nBetween 8 and 128 characters, please.")
-} while (length>128 || length<8)
+  length = Number(prompt("Please enter desired password length.\nBetween 8 and 128 characters, please."))
+} while (length>128 || length<8 || Number.isNaN(length));
+console.log(length,"Characters Long");
 
-console.log(length);
+upperSelected=confirm("Uppercase Characters?\nOK for Yes, Cancel for No")
+console.log("Uppercase Characters:", upperSelected)
+
+lowerSelected=confirm("Lowercase Characters?\nOK for Yes, Cancel for No")
+console.log("Lowercase Characters:", lowerSelected)
+
+numericSelected=confirm("Numeric Characters?\nOK for Yes, Cancel for No")
+console.log("Numeric Characters:", numericSelected)
+
+specialSelected=confirm("Special Characters?\nOK for Yes, Cancel for No")
+console.log("Special Characters:", specialSelected)
+
+
 
 // This is the function that I will have to eventually use
 function generatePassword() {
