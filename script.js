@@ -15,11 +15,6 @@
 // I'm guessing these are probably the inputs I need
 // The output is singular, the return value of the generate password function
 
-var upperSelected = false
-var lowerSelected = false
-var numericSelected = false
-var specialSelected = false
-var length = 0
 
 // Can also store the four data types in individual arrays.
 
@@ -32,21 +27,23 @@ function upperMaker() {
   }
 }
 upperMaker();
-var numericChars = ["1","2","3","4","5","6","7","8","9","0"];
+var numericChars = ["0","1","2","3","4","5","6","7","8","9"];
 var specialChars = [" ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","`","{","|","}","~"];
 
-// Lists out the four data types
+// Lists out the four data types in the console, for reference
 console.log(lowerChars);
 console.log(upperChars);
 console.log(numericChars);
 console.log(specialChars);
 
-// And we will put it all together by concatenating them together, based on the inputs
-console.log("===== CONCAT LIST ======")
-var charList = lowerChars.concat(numericChars);
-console.log(charList);
+// Input Collector
+// This do...while forces you to enter a number, and coerces it into an actual number value. Cannot cancel out, either.
 
-
+var upperSelected = false
+var lowerSelected = false
+var numericSelected = false
+var specialSelected = false
+var length = 0
 
 console.log("===== BEFORE INPUT =====")
 
@@ -56,30 +53,37 @@ console.log("Lowercase Characters:", lowerSelected)
 console.log("Numeric Characters:", numericSelected)
 console.log("Special Characters:", specialSelected)
 
-// Input Collector
-// This do...while forces you to enter a number, and coerces it into an actual number value. Cannot cancel out, either.
-
 function collectInputs() {
   console.log("===== AFTER INPUT =====")
   do {
     length = Number(prompt("Please enter desired password length.\nBetween 8 and 128 characters, please."))
   } while (length>128 || length<8 || Number.isNaN(length));
   console.log(length,"Characters Long");
-  
-  upperSelected=confirm("Uppercase Characters?\nOK for Yes, Cancel for No")
-  console.log("Uppercase Characters:", upperSelected)
-  
-  lowerSelected=confirm("Lowercase Characters?\nOK for Yes, Cancel for No")
-  console.log("Lowercase Characters:", lowerSelected)
-  
-  numericSelected=confirm("Numeric Characters?\nOK for Yes, Cancel for No")
-  console.log("Numeric Characters:", numericSelected)
-  
-  specialSelected=confirm("Special Characters?\nOK for Yes, Cancel for No")
-  console.log("Special Characters:", specialSelected)
+  do {
+    upperSelected=confirm("Uppercase Characters?\nOK for Yes, Cancel for No")
+    console.log("Uppercase Characters:", upperSelected)
+    
+    lowerSelected=confirm("Lowercase Characters?\nOK for Yes, Cancel for No")
+    console.log("Lowercase Characters:", lowerSelected)
+    
+    numericSelected=confirm("Numeric Characters?\nOK for Yes, Cancel for No")
+    console.log("Numeric Characters:", numericSelected)
+    
+    specialSelected=confirm("Special Characters?\nOK for Yes, Cancel for No")
+    console.log("Special Characters:", specialSelected)
+    if ((upperSelected || lowerSelected || numericSelected || specialSelected) == false) {
+      alert("Must select at least one character type!")
+      continue;
+    } 
+  } while(!(upperSelected || lowerSelected || numericSelected || specialSelected))
 }
 
 // Character Array Constructor
+// And we will put it all together by concatenating them together, based on the inputs
+console.log("===== CONCAT LIST ======")
+var charList = lowerChars.concat(numericChars);
+console.log(charList);
+
 function arrayConstructor() {
   
 }
@@ -101,8 +105,8 @@ console.log(result)
 // This is the function that I will have to eventually use
 function generatePassword() {
   console.log("Generate Password Button Hit!");
-  collectInputs()
-  return length;
+  collectInputs();
+  return;
 }
 
 // Assignment Code
