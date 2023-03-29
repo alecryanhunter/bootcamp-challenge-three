@@ -23,29 +23,29 @@ var length = 0
 
 // Can also store the four data types in individual arrays.
 
-var lowerChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-// This turns the lowercase array into an uppercase array, needing only to originally store one
+var lowerChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+// This turns the lowercase array into an uppercase array. The variable has to be outside so that it will be stored globally.
 var upperChars = []
-for (var i=0;lowerChars.length>i;i++) {
-  upperChars.push(lowerChars[i].toUpperCase())
+function upperMaker() {
+  for (var i=0;lowerChars.length>i;i++) {
+    upperChars.push(lowerChars[i].toUpperCase());
+  }
 }
-var numericChars = ["1","2","3","4","5","6","7","8","9","0"]
-var specialChars = [" ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","`","{","|","}","~"]
+upperMaker();
+var numericChars = ["1","2","3","4","5","6","7","8","9","0"];
+var specialChars = [" ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","`","{","|","}","~"];
 
 // Lists out the four data types
-console.log(lowerChars)
-console.log(upperChars)
-console.log(numericChars)
-console.log(specialChars)
+console.log(lowerChars);
+console.log(upperChars);
+console.log(numericChars);
+console.log(specialChars);
 
 // And we will put it all together by concatenating them together, based on the inputs
-var charList = lowerChars.concat(numericChars)
-console.log(charList)
+console.log("===== CONCAT LIST ======")
+var charList = lowerChars.concat(numericChars);
+console.log(charList);
 
-// Then take the full array and use a for loop taking a random number and assigning it
-for (var i=0;i<8;i++) {
-  console.log(Math.floor(Math.random()*charList.length))
-}
 
 
 console.log("===== BEFORE INPUT =====")
@@ -56,6 +56,7 @@ console.log("Lowercase Characters:", lowerSelected)
 console.log("Numeric Characters:", numericSelected)
 console.log("Special Characters:", specialSelected)
 
+// Input Collector
 // This do...while forces you to enter a number, and coerces it into an actual number value. Cannot cancel out, either.
 
 function collectInputs() {
@@ -77,6 +78,25 @@ function collectInputs() {
   specialSelected=confirm("Special Characters?\nOK for Yes, Cancel for No")
   console.log("Special Characters:", specialSelected)
 }
+
+// Character Array Constructor
+function arrayConstructor() {
+  
+}
+
+// Password Constructor
+// Can append to the end of a string by just using a '+' after it's own variable
+
+var result =""
+function passwordConstructor() {
+  for (var i=0;i<8;i++) {
+    result = result+(charList[Math.floor(Math.random()*charList.length)]);
+  }
+}
+passwordConstructor()
+console.log(result)
+
+// ================
 
 // This is the function that I will have to eventually use
 function generatePassword() {
