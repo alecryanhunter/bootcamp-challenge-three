@@ -1,25 +1,15 @@
-// REQUIREMENTS:
-// Password has selectable criteria as following:
-// lowercase, uppercase, numeric, and special characters (1 must be selected)
-// Password has selectable length, between 8 and 128 characters
-// The password should generate and be displayed on the page or displayed in an alert
-// Formula that generates password MUST be named generatePassword()
+// Declaring our main variables up here at the beginning
 
-// Some way to have selectable criteria
-// Checkboxes, or multiple forms? Must verify that one is selected at min
+var upperSelected = false
+var lowerSelected = false
+var numericSelected = false
+var specialSelected = false
+var length = 0
 
-// Some way to generate random characters from the four lists
-
-// Some way to combine the random characters
-
-// I'm guessing these are probably the inputs I need
-// The output is singular, the return value of the generate password function
-
-
-// Can also store the four data types in individual arrays.
+// Decalring the four character sets in arrays
 
 var lowerChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-// This turns the lowercase array into an uppercase array. The variable has to be outside so that it will be stored globally.
+// This turns the lowercase array into an uppercase array, so I only had to type it once
 var upperChars = []
 function upperMaker() {
   for (var i=0;lowerChars.length>i;i++) {
@@ -37,14 +27,7 @@ console.log(upperChars);
 console.log(numericChars);
 console.log(specialChars);
 
-// Input Collector
-// Declaring our main variables up here at the beginning
-
-var upperSelected = false
-var lowerSelected = false
-var numericSelected = false
-var specialSelected = false
-var length = 0
+// Shows the starting values of the variables upon page load
 
 console.log("===== BEFORE INPUT =====")
 
@@ -53,6 +36,14 @@ console.log("Uppercase Characters:", upperSelected)
 console.log("Lowercase Characters:", lowerSelected)
 console.log("Numeric Characters:", numericSelected)
 console.log("Special Characters:", specialSelected)
+
+
+// Input Collector
+// Prompts the user to enter a length between 8 and 128, and will coerce that result into a number
+// Will repeat that step until an acceptable length is entered, will also repeat if a string is entered
+  // This is based on the fact that coercing a string into a number like we have done will return NaN
+// Then will send multiple prompts asking yes/no for the four data types
+// Will repeat if none are selected, giving a specific error message saying that you must select one
 
 function collectInputs() {
   console.log("===== AFTER INPUT =====")
@@ -80,31 +71,30 @@ function collectInputs() {
 }
 
 // Character Array Constructor
-// And we will put it all together by concatenating them together, based on the inputs
+// Array is constructed by concatenating the selected arrays onto the end of an empty array
+// Also prints the list in the console for posterity
 
 var charList=[];
 function arrayConstructor() {
-  do {
-    if (upperSelected==true) {
-      charList = charList.concat(upperChars);
-    } else {}
-    if (lowerSelected==true) {
-      charList = charList.concat(lowerChars);
-    } else {}
-    if (numericSelected==true) {
-      charList = charList.concat(numericChars);
-    } else {}
-    if (specialSelected==true) {
-      charList = charList.concat(specialChars);
-    } else {}
-  } while (false) {
-    console.log("===== CONCAT LIST ======")
-    console.log(charList)
+if (upperSelected==true) {
+  charList = charList.concat(upperChars);
   }
+if (lowerSelected==true) {
+  charList = charList.concat(lowerChars);
+  }
+if (numericSelected==true) {
+  charList = charList.concat(numericChars);
+  }
+if (specialSelected==true) {
+  charList = charList.concat(specialChars);
+}
+console.log("===== CONCAT LIST ======")
+console.log(charList)
 }
 
 // Password Constructor
-// Can append to the end of a string by just using a '+' after it's own variable
+// Creates the password by randomly selecting a character from the constructed array, and
+// then appending it to itself
 
 var result =""
 function passwordConstructor() {
@@ -113,9 +103,11 @@ function passwordConstructor() {
   }
 }
 
-// ================
+// Complete Password Generator
+// First, it resets the values of result and charList to empty, otherwise they will build
+// up over multiple generations. Then, collects inputs, constructs the array, and generates
+// the password following the above functions, then returns it out.
 
-// This is the function that I will have to eventually use
 function generatePassword() {
   console.log("Generate Password Button Hit!");
   result=""
