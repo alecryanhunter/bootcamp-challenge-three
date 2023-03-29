@@ -31,13 +31,14 @@ var numericChars = ["0","1","2","3","4","5","6","7","8","9"];
 var specialChars = [" ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","`","{","|","}","~"];
 
 // Lists out the four data types in the console, for reference
+console.log("===== Original Four Arrays =====")
 console.log(lowerChars);
 console.log(upperChars);
 console.log(numericChars);
 console.log(specialChars);
 
 // Input Collector
-// This do...while forces you to enter a number, and coerces it into an actual number value. Cannot cancel out, either.
+// Declaring our main variables up here at the beginning
 
 var upperSelected = false
 var lowerSelected = false
@@ -80,12 +81,26 @@ function collectInputs() {
 
 // Character Array Constructor
 // And we will put it all together by concatenating them together, based on the inputs
-console.log("===== CONCAT LIST ======")
-var charList = lowerChars.concat(numericChars);
-console.log(charList);
 
+var charList=[];
 function arrayConstructor() {
-  
+  do {
+    if (upperSelected==true) {
+      charList = charList.concat(upperChars);
+    } else {}
+    if (lowerSelected==true) {
+      charList = charList.concat(lowerChars);
+    } else {}
+    if (numericSelected==true) {
+      charList = charList.concat(numericChars);
+    } else {}
+    if (specialSelected==true) {
+      charList = charList.concat(specialChars);
+    } else {}
+  } while (false) {
+    console.log("===== CONCAT LIST ======")
+    console.log(charList)
+  }
 }
 
 // Password Constructor
@@ -93,20 +108,23 @@ function arrayConstructor() {
 
 var result =""
 function passwordConstructor() {
-  for (var i=0;i<8;i++) {
+  for (var i=0;i<length;i++) {
     result = result+(charList[Math.floor(Math.random()*charList.length)]);
   }
 }
-passwordConstructor()
-console.log(result)
 
 // ================
 
 // This is the function that I will have to eventually use
 function generatePassword() {
   console.log("Generate Password Button Hit!");
+  result=""
+  charList=[]
   collectInputs();
-  return;
+  arrayConstructor();
+  passwordConstructor();
+  console.log("The password is",result.length,"characters long.")
+  return result;
 }
 
 // Assignment Code
